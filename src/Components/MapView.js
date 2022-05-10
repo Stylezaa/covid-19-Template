@@ -26,40 +26,45 @@ function MapView(props) {
 
     const markerElements = locationArray.map(location => {
         const {
-            id, country_code,
-            country, province,
+            id, name,
             coordinates: { latitude, longitude },
-            latest: { confirmed }
         } = location;
 
-        let markerIcon = icons.xxSmall;
-        if (confirmed >= 101 && confirmed <= 500) {
-            markerIcon = icons.xSmall;
-        }
-        else if (confirmed >= 501 && confirmed <= 1000) {
-            markerIcon = icons.small;
-        }
-        else if (confirmed >= 1001 && confirmed <= 5000) {
-            markerIcon = icons.normal;
-        }
-        else if (confirmed >= 5001 && confirmed <= 10000) {
-            markerIcon = icons.large;
-        }
-        else if (confirmed >= 10001 && confirmed <= 50000) {
-            markerIcon = icons.xLarge;
-        }
-        else if (confirmed >= 50001) {
-            markerIcon = icons.xxLarge;
-        }
+        let markerIcon = icons.xLarge;
+        // if (confirmed >= 101 && confirmed <= 500) {
+        //     markerIcon = icons.xSmall;
+        // }
+        // else if (confirmed >= 501 && confirmed <= 1000) {
+        //     markerIcon = icons.small;
+        // }
+        // else if (confirmed >= 1001 && confirmed <= 5000) {
+        //     markerIcon = icons.normal;
+        // }
+        // else if (confirmed >= 5001 && confirmed <= 10000) {
+        //     markerIcon = icons.large;
+        // }
+        // else if (confirmed >= 10001 && confirmed <= 50000) {
+        //     markerIcon = icons.xLarge;
+        // }
+        // else if (confirmed >= 50001) {
+        //     markerIcon = icons.xxLarge;
+        // }
 
-        let title = country;
-        if (province !== '' && province !== country) {
-            title = `${province}, ${country}`;
-        }
+        let title = name;
+        // if (province !== '' && province !== country) {
+        //     title = `${province}, ${country}`;
+        // }
+
+        // let MarkerClass = 'marker-icon';
+        // if (onSelectMarker !== null) {
+        //     if (location.id === onSelectMarker.id) {
+        //         MarkerClass += ' selected';
+        //     }
+        // }
 
         return (
             <Marker 
-                key={`${id}-${country_code}`} 
+                key={`${id}-${name}`} 
                 position={[latitude, longitude]}
                 icon={markerIcon} 
                 onclick={() => onSelectMarker(id)} >
@@ -69,7 +74,7 @@ function MapView(props) {
     });
 
     return (
-        <Map className="map-view" center={mapCenter} zoom={5}>
+        <Map className="map-view" center={mapCenter} zoom={14}>
             <TileLayer
                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

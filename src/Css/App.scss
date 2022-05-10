@@ -89,6 +89,11 @@
     border-color: rgb(224, 7, 7);
 }
 
+.marker-icon.selected {
+    border-color: $black-bis;
+    border-width: 4px;
+}
+
 // Details view
 
 .details-view {
@@ -98,10 +103,12 @@
     width: 322px;
     padding: 20px;
     position: fixed;
-    left: 50%;
+    // left: 50%;
+    top: 0;
+    right: 0;
     bottom: 0px;
     z-index: 20;
-    transform: translateX(-50%);
+    // transform: translateX(-50%);
 }
 
 .details-view-close {

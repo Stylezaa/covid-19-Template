@@ -6,12 +6,12 @@ import Axios from 'axios';
 import ListView from './Components/ListView';
 import DetailsView from './Components/DetailsView';
 
-const api = 'https://coronavirus-tracker-api.herokuapp.com/v2/locations';
+const api = 'https://raw.githubusercontent.com/Stylezaa/api_iot/main/data.json';
 
 function App() {
 	const [locationArray, setLocationArray] = useState([]);
 	const [selectedLocation, setSelectedLocation] = useState(null);
-	const [mapCenter, setMapCenter]= useState([13, 100]);
+	const [mapCenter, setMapCenter]= useState([17.956352, 102.603704]);
 	
 	function sortedLocationArray(locations) {
 		return [...locations].sort((location1, location2) => {
@@ -36,7 +36,7 @@ function App() {
 
 	useEffect(() => {
 		Axios.get(api).then(response => {
-			const sortedLocations = sortedLocationArray(response.data.locations);
+			const sortedLocations = sortedLocationArray(response.data.station_list);
 			setLocationArray(sortedLocations);
 		}).catch(error => {
 			console.log(error);

@@ -1,20 +1,21 @@
 import React from 'react';
 
-const totalKeyArray = ['confirmed', 'recovered', 'deaths'];
+const totalKeyArray = ['pH', 'DO', 'EC'];
 
 function DetailsView(props) {
     const {
-        location: { country, province, latest },
+        location: { name, latest },
         onClickClose
     } = props;
 
-    let title = country;
-    if (province !== '' && province !== country) {
-        title = `${province}, ${country}`;
-    }
+    let title = name;
+    // if (province !== '' && province !== country) {
+    //     title = `${province}, ${country}`;
+    // }
 
     const totalElements = totalKeyArray.map(key => {
         const count = latest[key];
+        console.log(count)
         return (
             <div key={key} className="columns">
                 <div className="column">
